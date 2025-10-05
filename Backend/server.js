@@ -1,10 +1,12 @@
 //start server
+// server.js
 import dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
+
 import connectDB from "./src/db/db.js";
 import app from "./src/app.js";
 
-
-dotenv.config({ path: "./.env" });
+console.log("IMAGEKIT_PRIVATE_KEY:", process.env.IMAGEKIT_PRIVATE_KEY);
 
 const PORT = process.env.PORT || 8000;
 
@@ -17,4 +19,3 @@ connectDB()
   .catch((error) => {
     console.error("MongoDB connection failed !!!", error.message);
   });
-

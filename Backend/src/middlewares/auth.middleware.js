@@ -2,6 +2,8 @@ import { foodPartnerModel } from "../models/foodpartner.model.js";
 import jwt from "jsonwebtoken";
 
 const authFoodPartnerMiddleware=async (req,res,next)=>{
+      const token = req.cookies?.token || req.headers["authorization"]?.split(" ")[1];
+
     if(!token){
         return res.status(400).json({
             message:"Please login First"
