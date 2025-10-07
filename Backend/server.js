@@ -3,10 +3,13 @@
 import dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
 
+
 import connectDB from "./src/db/db.js";
 import app from "./src/app.js";
 
-console.log("IMAGEKIT_PRIVATE_KEY:", process.env.IMAGEKIT_PRIVATE_KEY);
+// console.log("IMAGEKIT_PUBLIC_KEY:", process.env.IMAGEKIT_PUBLIC_KEY);
+// console.log("IMAGEKIT_PRIVATE_KEY:", process.env.IMAGEKIT_PRIVATE_KEY);
+
 
 const PORT = process.env.PORT || 8000;
 
