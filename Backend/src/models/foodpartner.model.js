@@ -6,6 +6,18 @@ const foodPartnerSchema=new Schema(
             required:true
         }
         ,
+        contactName:{
+            type:String,
+            required:true
+        },
+        Phone:{
+            type:String,
+            required:true
+        },
+        address:{
+            type:String,
+            required:true
+        },
         email:{
             type:String,
             required:true,

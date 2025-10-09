@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { json } from "express";
 const registerFoodPartner=async (req,res)=>{
-    const {name,email,password}=req.body;
+    const {name,email,password,Phone,address,contactName}=req.body;
     const isAccountAlreadyExists = await foodPartnerModel.findOne({ email });
 
 if (isAccountAlreadyExists) {   
@@ -16,7 +16,10 @@ if (isAccountAlreadyExists) {
     const foodpartner=await foodPartnerModel.create({
         name,
         email,
-        password:hasshedpassword
+        password:hasshedpassword,
+        Phone,
+        address,
+        contactName
     })
 
     const token = jwt.sign({
@@ -30,7 +33,10 @@ if (isAccountAlreadyExists) {
         foodpartner:{
             _id:foodpartner._id,
             email:foodpartner.email,
-            name:foodpartner.name
+            name:foodpartner.name,
+            Phone:foodpartner.Phone,
+            address:foodpartner.address,
+            contactName:foodpartner.contactName
         }
     })
 }
