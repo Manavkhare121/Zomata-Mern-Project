@@ -3,8 +3,8 @@ import {registerFoodPartner,
     loginFoodPartner,
     logoutFoodPartner} from '../controllers/foodpartner.controller.js'
 const router =Router();
-router.post("/foodpartner/register", registerFoodPartner);
-router.post("/foodpartner/login", loginFoodPartner);
-router.get("/foodpartner/logout", logoutFoodPartner);
+router.post("/food-partner/register", registerFoodPartner);
+router.post("/food-partner/login", loginFoodPartner);
+router.get("/food-partner/logout", logoutFoodPartner);
 
-export default router;
+export default router; 

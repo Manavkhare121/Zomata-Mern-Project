@@ -10,7 +10,7 @@ const foodPartnerSchema=new Schema(
             type:String,
             required:true
         },
-        Phone:{
+        phone:{
             type:String,
             required:true
         },

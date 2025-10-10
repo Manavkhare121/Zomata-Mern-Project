@@ -5,34 +5,49 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const FoodPartnerRegister = () => {
-
   const navigate = useNavigate();
-  
-  const handleSubmit = (e) => { 
+
+  // ✅ Make handleSubmit async
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const businessName = e.target.businessName.value;
-    const contactName = e.target.contactName.value;
-    const phone = e.target.phone.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const address = e.target.address.value;
+    // Use FormData to safely get values
+    const formData = new FormData(e.target);
+    const businessName = formData.get("businessName")?.trim();
+    const contactName = formData.get("contactName")?.trim();
+    const phone = formData.get("phone")?.trim();
+    const email = formData.get("email")?.trim();
+    const password = formData.get("password")?.trim();
+    const address = formData.get("address")?.trim();
 
-    axios.post("http://localhost:8000/api/auth/food-partner/register", {
-      name:businessName,
-      contactName,
-      phone,
-      email,
-      password,
-      address
-    }, { withCredentials: true })
-      .then(response => {
-        console.log(response.data);
-        navigate("/create-food"); // Redirect to create food page after successful registration
-      })
-      .catch(error => {
-        console.error("There was an error registering!", error);
-      });
+  
+    if (!businessName || !contactName || !phone || !email || !password || !address) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/authentication/food-partner/register",
+        {
+          name: businessName,
+          contactName,
+          phone,
+          email,
+          password,
+          address
+        },
+        { withCredentials: true }
+      );
+
+      console.log("Registration successful:", response.data);
+      navigate("/create-food"); // Redirect after success
+    } catch (error) {
+      console.error("There was an error registering!", error);
+      alert(
+        error.response?.data?.message || "Registration failed. Please try again."
+      );
+    }
   };
 
   return (
@@ -42,8 +57,10 @@ const FoodPartnerRegister = () => {
           <h1 id="partner-register-title" className="auth-title">Partner sign up</h1>
           <p className="auth-subtitle">Grow your business with our platform.</p>
         </header>
-        <nav className="auth-alt-action" style={{marginTop: '-4px'}}>
-          <strong style={{fontWeight:600}}>Switch:</strong> <Link to="/user/register">User</Link> • <Link to="/food-partner/register">Food partner</Link>
+        <nav className="auth-alt-action" style={{ marginTop: '-4px' }}>
+          <strong style={{ fontWeight: 600 }}>Switch:</strong> 
+          <Link to="/user/register">User</Link> • 
+          <Link to="/food-partner/register">Food partner</Link>
         </nav>
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           <div className="field-group">
@@ -60,10 +77,10 @@ const FoodPartnerRegister = () => {
               <input id="phone" name="phone" placeholder="+1 555 123 4567" autoComplete="tel" />
             </div>
           </div>
-            <div className="field-group">
-              <label htmlFor="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="business@example.com" autoComplete="email" />
-            </div>
+          <div className="field-group">
+            <label htmlFor="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="business@example.com" autoComplete="email" />
+          </div>
           <div className="field-group">
             <label htmlFor="password">Password</label>
             <input id="password" name="password" type="password" placeholder="Create password" autoComplete="new-password" />

@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { json } from "express";
 const registerFoodPartner=async (req,res)=>{
-    const {name,email,password,Phone,address,contactName}=req.body;
+    const {name,email,password,phone,address,contactName}=req.body;
     const isAccountAlreadyExists = await foodPartnerModel.findOne({ email });
 
 if (isAccountAlreadyExists) {   
@@ -17,7 +17,7 @@ if (isAccountAlreadyExists) {
         name,
         email,
         password:hasshedpassword,
-        Phone,
+        phone,
         address,
         contactName
     })
@@ -34,7 +34,7 @@ if (isAccountAlreadyExists) {
             _id:foodpartner._id,
             email:foodpartner.email,
             name:foodpartner.name,
-            Phone:foodpartner.Phone,
+            phone:foodpartner.phone,
             address:foodpartner.address,
             contactName:foodpartner.contactName
         }
