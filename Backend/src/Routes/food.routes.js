@@ -12,5 +12,8 @@ router.post("/", authFoodPartnerMiddleware, upload.single("video"), createFood);
 
 
 router.get("/",authUserMiddleware,getFoodItems)
+router.post("/", createFood);
+
+
 
 export default router;

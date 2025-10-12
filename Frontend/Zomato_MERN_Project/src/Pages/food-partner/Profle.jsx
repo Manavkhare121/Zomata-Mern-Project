@@ -26,7 +26,7 @@ const Profile = () => {
 
                     <div className="profile-info">
                         <h1 className="profile-pill profile-business" title="Business name">
-                            {profile?.name}
+                            {profile?. name}
                         </h1>
                         <p className="profile-pill profile-address" title="Address">
                             {profile?.address}

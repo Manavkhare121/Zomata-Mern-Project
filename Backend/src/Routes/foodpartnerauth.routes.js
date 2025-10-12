@@ -7,4 +7,5 @@ router.post("/food-partner/register", registerFoodPartner);
 router.post("/food-partner/login", loginFoodPartner);
 router.get("/food-partner/logout", logoutFoodPartner);
 
+
 export default router; 
