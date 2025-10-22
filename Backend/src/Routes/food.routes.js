@@ -1,6 +1,6 @@
 // src/routes/food.routes.js
 import { Router } from "express";
-import { createFood ,getFoodItems,likeFood,saveFood} from "../controllers/food.controller.js";
+import { createFood ,getFoodItems,likeFood,saveFood,getsavedfood} from "../controllers/food.controller.js";
 import {authFoodPartnerMiddleware,authUserMiddleware} from "../middlewares/auth.middleware.js";
 import multer from "multer";
 
@@ -13,9 +13,9 @@ router.post("/", authFoodPartnerMiddleware, upload.single("video"), createFood);
 
 router.get("/",authUserMiddleware,getFoodItems)
 router.post("/", createFood);
-router.post('/like',authUserMiddleware,likeFood)
-router.post("/save",authUserMiddleware,saveFood)
-
+router.post('/like',authFoodPartnerMiddleware,likeFood)
+router.post("/save",authFoodPartnerMiddleware,saveFood)
+router.get("/save",authFoodPartnerMiddleware,getsavedfood)
 
 
 export default router;
