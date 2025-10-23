@@ -7,6 +7,7 @@ import FoodPartnerRegister from './Pages/Auth/FoodPartnerRegister.jsx'
 import Home from "./Pages/General/Home.jsx"
 import CreateFood from './Pages/food-partner/CreateFood.jsx'
 import Profile from './Pages/food-partner/Profle.jsx'
+import BottomNav from './components/BottomNav.jsx'
 const AppRoutes = () => {
   return (
     <BrowserRouter>
@@ -18,6 +19,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Home/>}/>
         <Route path="/create-food" element={<CreateFood/>}/>
          <Route path="/food-partner/:id" element={<Profile/>} />
+         <Route path="/saved" element={<BottomNav/>}/>
       </Routes>
     </BrowserRouter>
 

@@ -12,10 +12,10 @@ router.post("/", authFoodPartnerMiddleware, upload.single("video"), createFood);
 
 
 router.get("/",authUserMiddleware,getFoodItems)
-router.post("/", createFood);
-router.post('/like',authFoodPartnerMiddleware,likeFood)
-router.post("/save",authFoodPartnerMiddleware,saveFood)
-router.get("/save",authFoodPartnerMiddleware,getsavedfood)
+
+router.post('/like',authUserMiddleware,likeFood)
+router.post("/save",authUserMiddleware,saveFood)
+router.get("/food/saved",authUserMiddleware,getsavedfood)
 
 
 export default router;

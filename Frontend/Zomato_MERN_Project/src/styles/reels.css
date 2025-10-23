@@ -71,6 +71,7 @@
   flex-direction: column;
   padding-right: 4.5rem;
   gap: var(--space-4);
+  margin-bottom: 2rem;
   pointer-events: auto; /* enable button click */
 }
 

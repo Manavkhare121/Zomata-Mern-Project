@@ -1,43 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import '../../styles/reels.css'
-import axios from 'axios'
-import ReelFeed from '../../components/ReelFeed'
+import React, { useEffect, useState } from 'react';
+import '../../styles/reels.css';
+import axios from 'axios';
+import ReelFeed from '../../components/ReelFeed';
 
 const Saved = () => {
-    const [ videos, setVideos ] = useState([])
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        axios.get("http://localhost:8000/api/food/save", { withCredentials: true })
-            .then(response => {
-                const savedFoods = response.data.savedFoods.map((item) => ({
-                    _id: item.food._id,
-                    video: item.food.video,
-                    description: item.food.description,
-                    likeCount: item.food.likeCount,
-                    savesCount: item.food.savesCount,
-                    commentsCount: item.food.commentsCount,
-                    foodPartner: item.food.foodPartner,
-                }))
-                setVideos(savedFoods)
-            })
-    }, [])
-
-    const removeSaved = async (item) => {
-        try {
-            await axios.post("http://localhost:8000/api/food/save", { foodId: item._id }, { withCredentials: true })
-            setVideos((prev) => prev.map((v) => v._id === item._id ? { ...v, savesCount: Math.max(0, (v.savesCount ?? 1) - 1) } : v))
-        } catch {
-            // noop
-        }
+  const fetchSavedFoods = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/food/saved", { withCredentials: true });
+      console.log("📥 Saved Foods from backend:", response.data);
+      const foods = response.data.savedFoods || [];
+      setVideos(foods);
+    } catch (error) {
+      console.error("❌ Error fetching saved foods:", error);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    return (
-        <ReelFeed
-            items={videos}
-            onSave={removeSaved}
-            emptyMessage="No saved videos yet."
-        />
-    )
-}
+  useEffect(() => {
+    fetchSavedFoods();
+  }, []);
 
-export default Saved
+  const removeSaved = async (item) => {
+    try {
+      await axios.post("http://localhost:8000/api/food/save", { foodId: item._id }, { withCredentials: true });
+      setVideos((prev) => prev.filter((v) => v._id !== item._id));
+    } catch (error) {
+      console.error("❌ Error unsaving food:", error);
+    }
+  };
+
+  if (loading) return <div className="loading">Loading saved reels...</div>;
+
+  return (
+    <ReelFeed
+      items={videos}
+      onSave={removeSaved}
+      emptyMessage="No saved videos yet."
+    />
+  );
+};
+
+export default Saved;
+
