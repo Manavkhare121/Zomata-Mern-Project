@@ -52,6 +52,7 @@ body {
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   line-height: 1.4;
+  
 }
 
 a {

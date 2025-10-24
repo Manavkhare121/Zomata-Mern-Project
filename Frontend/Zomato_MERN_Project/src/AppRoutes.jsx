@@ -8,6 +8,7 @@ import Home from "./Pages/General/Home.jsx"
 import CreateFood from './Pages/food-partner/CreateFood.jsx'
 import Profile from './Pages/food-partner/Profle.jsx'
 import BottomNav from './components/BottomNav.jsx'
+import Saved from './Pages/General/Saved.jsx'
 const AppRoutes = () => {
   return (
     <BrowserRouter>
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         <Route path="/create-food" element={<CreateFood/>}/>
          <Route path="/food-partner/:id" element={<Profile/>} />
          <Route path="/saved" element={<BottomNav/>}/>
+         <Route path="/save" element={<Saved/>}/>
       </Routes>
     </BrowserRouter>
 

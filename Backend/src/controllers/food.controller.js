@@ -58,33 +58,12 @@ const saveFood = async (req, res) => {
 
 const getsavedfood = async (req, res) => {
   try {
-    const user = req.user;
-    if (!user) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-
-    const savedFoods = await SaveModel.find({ user: user._id })
-      .populate("food");
-
-    const formatted = savedFoods
-      .filter((item) => item.food)
-      .map((item) => ({
-        _id: item.food._id,
-        video: item.food.video,
-        description: item.food.description,
-        likeCount: item.food.likeCount || 0,
-        savesCount: item.food.savesCount || 0,
-        commentsCount: item.food.commentsCount || 0,
-        foodPartner: item.food.foodPartner,
-      }));
-
-    res.status(200).json({
-      message: "Saved Foods Retrieved Successfully",
-      savedFoods: formatted,
-    });
+    const userId = req.user._id;
+    const savedDocs = await SaveModel.find({ user: userId }).populate("food");
+    const savedFoods = savedDocs.map((doc) => doc.food);
+    res.status(200).json({ message: "Saved foods fetched successfully", saved: savedFoods });
   } catch (error) {
-    console.error("Error fetching saved foods:", error);
-    res.status(500).json({ message: "Error fetching saved foods" });
+    res.status(500).json({ message: "Failed to fetch saved foods" });
   }
 };
 

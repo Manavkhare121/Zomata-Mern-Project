@@ -15,7 +15,7 @@ router.get("/",authUserMiddleware,getFoodItems)
 
 router.post('/like',authUserMiddleware,likeFood)
 router.post("/save",authUserMiddleware,saveFood)
-router.get("/food/saved",authUserMiddleware,getsavedfood)
+router.get("/save",authUserMiddleware,getsavedfood)
 
 
 export default router;
