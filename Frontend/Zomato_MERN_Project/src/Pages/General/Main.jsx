@@ -38,7 +38,6 @@ import footerIllu from '../../assests/images/footer-illustration.png';
 import saleShape from '../../assests/images/sale-shape.png';
 
 // --- DYNAMIC DATA CONFIGURATION ---
-
 const promoData = [
   { title: "Maxican Pizza", text: "Food is any substance consumed to provide nutritional support.", img: promo1 },
   { title: "Soft Drinks", text: "Food is any substance consumed to provide nutritional support.", img: promo2 },
@@ -74,12 +73,13 @@ const blogData = [
 const Header = () => {
   const [active, setActive] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+const [modal, setModalopen] = useState(false);
 
   return (
     <header className={`header ${active ? 'active' : ''}`} data-header>
       <div className="container">
         <h1>
-          <a href="#home" className="logo">Snakkr<span className="span">.</span></a>
+          <a href="#home" className="logo">SnakoGram<span className="span">.</span></a>
         </h1>
 
         <nav className={`navbar ${active ? 'active' : ''}`} data-navbar>
@@ -96,7 +96,27 @@ const Header = () => {
           <button className="search-btn" aria-label="Search" onClick={() => setSearchOpen(!searchOpen)}>
             <IoSearchOutline />
           </button>
-          <button className="btn btn-hover">Reservation</button>
+         <button className="btn btn-hover" onClick={() => setModalopen(true)}>
+        Reservation
+      </button>
+
+      {/* Modal */}
+      {modal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <header>
+              <h2>Select User</h2>
+              <button onClick={() => setModalopen(false)}>
+                <i className="ri-close-fill"></i>
+              </button>
+            </header>
+
+            <div className="modal-users">
+              {/* Add your user list here */}
+            </div>
+          </div>
+        </div>
+      )}
           <button className="nav-toggle-btn" aria-label="Toggle Menu" onClick={() => setActive(!active)}>
             <span className="line top"></span>
             <span className="line middle"></span>
@@ -235,7 +255,7 @@ const CTA = () => {
     <section className="section section-divider white cta" style={{ backgroundImage: `url(${heroBg})` }}>
       <div className="container">
         <div className="cta-content">
-          <h2 className="h2 section-title">The Snakkr Have Excellent Of <span className="span">Quality Burgers!</span></h2>
+          <h2 className="h2 section-title">The SnakoGram Have Excellent Of <span className="span">Quality Burgers!</span></h2>
           <p className="section-text">The restaurants in Hangzhou also catered to many northern Chinese who had fled south...</p>
           <button className="btn btn-hover">Order Now</button>
         </div>
@@ -471,7 +491,7 @@ const Footer = () => {
 
 // --- MAIN APP ---
 
-function App() {
+function Main() {
   return (
     <div className="App" id="top">
       <Header />
@@ -496,4 +516,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;

@@ -1305,3 +1305,52 @@ textarea.input-field {
   .banner-md .banner-item-content { left: 55%; }
   .footer-top .container { grid-template-columns: 1.4fr 1fr 1fr 1.6fr; }
 }
+
+
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.modal header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #1e293b;
+}
+
+.modal header button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #475569;
+}
+
+.modal-users {
+  max-height: 280px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
