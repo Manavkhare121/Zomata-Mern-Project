@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "../../styles/Main.css"; // Assuming you pasted your CSS here
 // Import Icons
 import { IoSearchOutline, IoMenuOutline, IoCloseOutline, IoStar, IoCheckmarkOutline, IoCalendarOutline, IoPersonOutline, IoArrowForward, IoLogoFacebook, IoLogoTwitter, IoLogoInstagram, IoLogoPinterest, IoChevronUp } from 'react-icons/io5';
@@ -36,7 +37,8 @@ import blog2 from '../../assests/images/blog-2.jpg';
 import blog3 from '../../assests/images/blog-3.jpg';
 import footerIllu from '../../assests/images/footer-illustration.png';
 import saleShape from '../../assests/images/sale-shape.png';
-
+import fork from '../../assests/images/fork.png'
+import chef from '../../assests/images/chef.png'
 // --- DYNAMIC DATA CONFIGURATION ---
 const promoData = [
   { title: "Maxican Pizza", text: "Food is any substance consumed to provide nutritional support.", img: promo1 },
@@ -71,15 +73,33 @@ const blogData = [
 // --- COMPONENTS ---
 
 const Header = () => {
+  const navigate = useNavigate();
   const [active, setActive] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-const [modal, setModalopen] = useState(false);
+  const [modal, setModalopen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <header className={`header ${active ? 'active' : ''}`} data-header>
+    <header className={`header ${active || isScrolled ? 'active' : ''}`} data-header>
       <div className="container">
         <h1>
-          <a href="#home" className="logo">SnakoGram<span className="span">.</span></a>
+          <a href="#home" className="Png">SnakoGram<span className="span">.</span></a>
         </h1>
 
         <nav className={`navbar ${active ? 'active' : ''}`} data-navbar>
@@ -96,27 +116,35 @@ const [modal, setModalopen] = useState(false);
           <button className="search-btn" aria-label="Search" onClick={() => setSearchOpen(!searchOpen)}>
             <IoSearchOutline />
           </button>
-         <button className="btn btn-hover" onClick={() => setModalopen(true)}>
-        Reservation
-      </button>
+          <button className="btn btn-hover" onClick={() => setModalopen(true)}>
+            Reservation
+          </button>
 
-      {/* Modal */}
-      {modal && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <header>
-              <h2>Select User</h2>
-              <button onClick={() => setModalopen(false)}>
-                <i className="ri-close-fill"></i>
-              </button>
-            </header>
+          {modal && (
+            <div className="modal-overlay">
+              <div className="modal">
+                <header>
+                  <h2>Choose Your Role</h2>
+                  <button onClick={() => setModalopen(false)}>
+                    <IoCloseOutline />
+                  </button>
+                </header>
 
-            <div className="modal-users">
-              {/* Add your user list here */}
+                <div className="modal-users">
+                  <div className="left-user" onClick={() => navigate("/user/login")}>
+                    <img src={fork} alt="" />
+                    <p>User</p>
+                  </div>
+
+                  <div className="right-user" onClick={() => navigate("/food-partner/login")}>
+                    <img src={chef} alt="" />
+                    <p>Partner</p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          )}
+
           <button className="nav-toggle-btn" aria-label="Toggle Menu" onClick={() => setActive(!active)}>
             <span className="line top"></span>
             <span className="line middle"></span>
@@ -124,15 +152,14 @@ const [modal, setModalopen] = useState(false);
           </button>
         </div>
       </div>
-      
-      {/* Search Container */}
+
       <div className={`search-container ${searchOpen ? 'active' : ''}`}>
         <div className="search-box">
           <input type="search" name="search" placeholder="Type keywords here..." className="search-input" />
           <button className="search-submit" aria-label="Submit search"><IoSearchOutline /></button>
         </div>
         <button className="search-close-btn" aria-label="Cancel search" onClick={() => setSearchOpen(false)}>
-           <IoCloseOutline size={30}/> 
+          <IoCloseOutline size={30} />
         </button>
       </div>
     </header>
@@ -432,7 +459,7 @@ const Footer = () => {
       <div className="footer-top" style={{ backgroundImage: `url(${footerIllu})` }}>
         <div className="container">
           <div className="footer-brand">
-            <a href="" className="logo">Snakkr<span className="span">.</span></a>
+            <a href="" className="Png">SnakoGram<span className="span">.</span></a>
             <p className="footer-text">Financial experts support or help you to to find out which way you can raise your funds more.</p>
             <ul className="social-list">
               <li><a href="#" className="social-link"><IoLogoFacebook /></a></li>
@@ -445,7 +472,7 @@ const Footer = () => {
           <ul className="footer-list">
             <li><p className="footer-list-title">Contact Info</p></li>
             <li><p className="footer-list-item">+916210999222</p></li>
-            <li><p className="footer-list-item">inf@snakkrGmail24.com</p></li>
+            <li><p className="footer-list-item">inf@snakogramGmail24.com</p></li>
             <li><address className="footer-list-item">Indrapuri , Bhopal</address></li>
           </ul>
 
