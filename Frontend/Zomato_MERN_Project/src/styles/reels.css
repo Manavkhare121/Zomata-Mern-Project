@@ -1,20 +1,27 @@
 @import './theme.css';
 
-/* Page container ensures full viewport and background */
 .reels-page {
-  height: 100dvh;
-  background: var(--color-bg);
-  overflow: hidden; /* parent hides overscroll glow on iOS */
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100%;
+  background-color: #000; /* Set global background to black */
+  overflow: hidden;
 }
+
 .reels-feed::-webkit-scrollbar {
   display: none;
 }
 
-/* Vertical feed with snap scrolling */
 .reels-feed {
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
+  background-color: #000; /* Ensure feed background is black */
   overflow-y: auto;
   scroll-snap-type: y mandatory;
   overscroll-behavior-y: contain;
@@ -28,17 +35,16 @@
   height: 100dvh;
   width: 100%;
   scroll-snap-align: start;
-  background: #000; /* fallback while video loads */
+  background-color: #000; /* Reel container black */
 }
 
 .reel-video {
-  /* position: absolute;
-  inset: 0; */
-  /* width: 100%; */
+  width: 100%; /* Ensure video takes full width */
   height: 100%;
   object-fit: cover; /* cover entire screen */
   object-position: center;
-  background: #000;
+  background: #000; /* Video element background black */
+  display: block;
 }
 
 /* Overlay: content sits on top of video */
@@ -152,6 +158,12 @@
   color: #fff;
 }
 
-.empty-state{
-  position: absolute; inset: 0; display: grid; place-items: center; color: #fff;
+/* Ensure empty state is black */
+.reels-page .empty-state {
+  position: absolute; 
+  inset: 0; 
+  display: grid; 
+  place-items: center; 
+  color: #fff;
+  background-color: #000;
 }

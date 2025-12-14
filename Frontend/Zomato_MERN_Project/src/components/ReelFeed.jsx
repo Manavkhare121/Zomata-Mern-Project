@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-
+import "../styles/reels.css"
 // Reusable feed for vertical reels
 // Props:
 // - items: Array of video items { _id, video, description, likeCount, savesCount, commentsCount, comments, foodPartner }

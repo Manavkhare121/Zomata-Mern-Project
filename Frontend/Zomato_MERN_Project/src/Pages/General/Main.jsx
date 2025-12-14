@@ -70,6 +70,13 @@ const blogData = [
 ];
 
 
+const navItems = [
+    { label: 'Home', id: 'home' },
+    { label: 'About Us', id: 'about' },       // ID match: Section id="about"
+    { label: 'Shop', id: 'food-menu' },       // ID match: Section id="food-menu"
+    { label: 'Blog', id: 'blog' },            // ID match: Section id="blog"
+    { label: 'Contact Us', id: 'contact' }    // ID match: Footer id="contact" (Step 2 dekhein)
+  ];
 // --- COMPONENTS ---
 
 const Header = () => {
@@ -79,6 +86,15 @@ const Header = () => {
   const [modal, setModalopen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const scrollToSection = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActive(false);
+    }
+  };
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -99,14 +115,21 @@ const Header = () => {
     <header className={`header ${active || isScrolled ? 'active' : ''}`} data-header>
       <div className="container">
         <h1>
-          <a href="#home" className="Png">SnakoGram<span className="span">.</span></a>
+          <a className="Png">SnakoGram<span className="span">.</span></a>
         </h1>
 
-        <nav className={`navbar ${active ? 'active' : ''}`} data-navbar>
+       <nav className={`navbar ${active ? 'active' : ''}`} data-navbar>
           <ul className="navbar-list">
-            {['Home', 'About Us', 'Shop', 'Blog', 'Contact Us'].map((item) => (
-              <li className="nav-item" key={item}>
-                <a href={`#${item.toLowerCase().replace(' ', '-')}`} className="navbar-link" data-nav-link>{item}</a>
+            {navItems.map((item) => (
+              <li className="nav-item" key={item.label}>
+                <a 
+                  href={`#${item.id}`} 
+                  className="navbar-link" 
+                  data-nav-link
+                  onClick={(e) => scrollToSection(e, item.id)} // Click event lagaya
+                >
+                  {item.label}
+                </a>
               </li>
             ))}
           </ul>
@@ -174,7 +197,7 @@ const Hero = () => {
           <p className="hero-subtitle">Eat Sleep And</p>
           <h2 className="h1 hero-title">Supper delicious Burger in town!</h2>
           <p className="hero-text">Food is any substance consumed to provide nutritional support for an organism.</p>
-          <button className="btn">Book A Table</button>
+          <button className="btn btn-hover">Book A Table</button>
         </div>
         <figure className="hero-banner">
           <img src={heroBannerBg} width="820" height="716" alt="" aria-hidden="true" className="w-100 hero-img-bg" />
@@ -459,7 +482,7 @@ const Footer = () => {
       <div className="footer-top" style={{ backgroundImage: `url(${footerIllu})` }}>
         <div className="container">
           <div className="footer-brand">
-            <a href="" className="Png">SnakoGram<span className="span">.</span></a>
+            <a href="" className="Png2">SnakoGram<span className="span">.</span></a>
             <p className="footer-text">Financial experts support or help you to to find out which way you can raise your funds more.</p>
             <ul className="social-list">
               <li><a href="#" className="social-link"><IoLogoFacebook /></a></li>
@@ -500,7 +523,7 @@ const Footer = () => {
               <input type="date" name="booking_date" aria-label="Reservation date" className="input-field" />
             </div>
             <textarea name="message" required placeholder="Message" aria-label="Message" className="input-field"></textarea>
-            <button type="submit" className="btn">Book a Table</button>
+            <button type="submit" className="btn btn-hover">Book a Table</button>
           </form>
         </div>
       </div>

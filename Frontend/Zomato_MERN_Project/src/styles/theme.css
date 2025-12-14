@@ -48,7 +48,7 @@
 /* Base element theming (can be imported once globally) */
 body {
   font-family: var(--font-stack);
-  background: var(--color-bg);
+  /* background: var(--color-bg); */
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   line-height: 1.4;
@@ -61,6 +61,6 @@ a {
   transition: color var(--transition-base);
 }
 
-a:hover, a:focus-visible { color: var(--color-accent-hover); }
+/* a:hover, a:focus-visible { color: var(--color-accent-hover); } */
 
 ::selection { background: var(--color-accent); color: #fff; }
