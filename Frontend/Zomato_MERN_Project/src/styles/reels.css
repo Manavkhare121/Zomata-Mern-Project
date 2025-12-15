@@ -10,7 +10,7 @@
   transform: translate(-50%, -50%);
   height: 100vh;
   width: 100%;
-  background-color: #000; /* Set global background to black */
+  background-color: #000;
   overflow: hidden;
 }
 
@@ -37,6 +37,11 @@
   scroll-snap-align: start;
   background-color: #000; /* Reel container black */
 }
+.reel-action.liked {
+  background-color: red;
+  color: white;
+}
+
 
 .reel-video {
   width: 100%; /* Ensure video takes full width */
@@ -96,23 +101,55 @@
 }
 
 .reel-btn {
-  align-self: flex-start;
-  background: var(--color-accent);
-  color: #fff;
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-weight: 700;
-  letter-spacing: .3px;
+  background-color: hsl(32, 100%, 59%);
+  color: #ffffff;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  height: 40px;
+  padding-inline: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
+  margin-bottom: 0.5rem;
+  border:none;
+  cursor: pointer;
   box-shadow: var(--shadow-md);
-  transition: transform var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: 0.25s ease;
+  align-self: flex-start;
 }
 
-.reel-btn:hover { background: var(--color-accent-hover); }
-.reel-btn:active { transform: translateY(1px); }
-.reel-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.reel-btn::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 20px;
+  width: 1px;
+  height: 1px;
+  transform: translate(-50%, 51%) scale(1);
+  border-radius: 50%;
+  background-color: hsl(210, 26%, 7%);
+  z-index: -1;
+  transition: 0.5s ease;
+}
 
-/* Desktop tweaks */
+.reel-btn:is(:hover, :focus)::after {
+  transform: translate(-50%, 51%) scale(500);
+}
+
+.reel-btn:active {
+  transform: translateY(1px);
+}
+
+.reel-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
 @media (min-width: 768px) {
   .reel-content { padding: 36px; }
   .reel-description { font-size: 1.05rem; max-width: 70ch; }

@@ -61,7 +61,7 @@ const ReelFeed = ({ items = [], onLike, onSave, emptyMessage = 'No videos yet.' 
               <div className="reel-actions">
                 <div className="reel-action-group">
                   <button
-                    onClick={onLike ? () => onLike(item) : undefined}
+                    onClick={onLike ? () => onLike(item) : undefined }
                     className="reel-action"
                     aria-label="Like"
                   >
