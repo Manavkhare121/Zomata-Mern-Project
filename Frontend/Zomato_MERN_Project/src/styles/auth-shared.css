@@ -1,87 +1,118 @@
 @import './theme.css';
 
+/* Page background → same orange as profile */
 .auth-page-wrapper {
   min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-8) var(--space-4);
-  background: radial-gradient(circle at 30% 20%, var(--color-surface-alt) 0%, var(--color-bg) 60%);
-  background-attachment: fixed;
+  background:#861719;
 }
 
-@media (prefers-color-scheme: dark) {
-  .auth-page-wrapper {
-    background: radial-gradient(circle at 70% 60%, var(--color-surface-alt) 0%, var(--color-bg) 65%);
-  }
-}
-
+/* Card → white with dark border like profile-header */
 .auth-card {
   width: 100%;
   max-width: 420px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: hsl(32, 100%, 59%);
+  /* border: 1px solid hsl(210, 26%, 7%); */
   padding: var(--space-6) var(--space-6) var(--space-5);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+
+  /* 🔽 DENSER SHADOW */
+  box-shadow:
+    0 22px 55px -12px rgba(0, 0, 0, 0.45),
+    0 10px 20px -8px rgba(0, 0, 0, 0.30) !important;
+
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-.auth-card header { text-align: center; }
 
+.auth-card header {
+  text-align: center;
+}
+
+/* Title → dark */
 .auth-title {
   font-size: 1.45rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .5px;
   margin-bottom: var(--space-2);
+  color:white;
 }
 
+/* Subtitle → slightly muted dark */
 .auth-subtitle {
   font-size: .85rem;
-  color: var(--color-text-secondary);
+  color:black;
 }
 
-form.auth-form { display: flex; flex-direction: column; gap: var(--space-4); }
+/* Form */
+form.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
 
-.field-group { display: flex; flex-direction: column; gap: 4px; }
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
+/* Labels → dark */
 .field-group label {
   font-size: .75rem;
   text-transform: uppercase;
   letter-spacing: .07em;
   font-weight: 600;
-  color: var(--color-text-secondary);
+  color: hsl(210, 26%, 7%);
 }
 
+/* Inputs → white bg + dark border */
 .field-group input {
   appearance: none;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface-alt);
+  border: 1px solid hsl(210, 26%, 7%);
+  background: white;
   padding: 10px 12px;
   font: inherit;
   border-radius: var(--radius-sm);
   outline: none;
-  color: var(--color-text);
-  transition: border-color var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+  color: hsl(210, 26%, 7%);
+  transition: border-color var(--transition-base),
+              box-shadow var(--transition-base);
   width: 100%;
-  min-width: 0; /* allow shrinking inside flex parent */
 }
 
+/* Focus → dark outline (same as profile) */
+.field-group input:-webkit-autofill,
+.field-group input:-webkit-autofill:hover,
+.field-group input:-webkit-autofill:focus,
+.field-group input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: hsl(210, 26%, 7%) !important;
+  border: 1px solid hsl(32, 100%, 59%) !important;
+}
+
+/* Normal focus (mouse + keyboard) */
+.field-group input:focus,
 .field-group input:focus-visible {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 55%, transparent);
-  background: var(--color-surface);
+  background-color: white !important;
+  border-color: hsl(32, 100%, 59%) !important;
+  box-shadow: 0 0 0 2px hsl(32, 100%, 59%) !important;
 }
-
-.two-col { display: flex; gap: var(--space-4); }
-.two-col .field-group { flex: 1 1 0; min-width: 0; }
 
 button.auth-submit {
+  position: relative;          /* FIX 1 */
+  overflow: hidden;            /* FIX 2 */
+  z-index: 1;
+
   margin-top: var(--space-2);
-  background: var(--color-accent);
-  color: #fff;
+  background: hsl(210, 26%, 7%);
+  color: white;
   border: none;
   padding: 12px 16px;
   font: inherit;
@@ -92,32 +123,61 @@ button.auth-submit {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  transition: background var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  transition: transform var(--transition-base),
+              box-shadow var(--transition-base);
 }
 
-button.auth-submit:hover { background: var(--color-accent-hover); }
-button.auth-submit:active { transform: translateY(1px); }
-button.auth-submit:focus-visible { outline: 2px solid var(--color-accent-hover); outline-offset: 2px; }
+/* Ripple circle */
+button.auth-submit::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background-color:#861719;;
+  transform: translate(-50%, 50%) scale(2);
+  transition: transform 0.5s ease;
+  z-index: -1; /* stays behind text but inside button */
+}
 
+button.auth-submit:is(:hover, :focus)::after {
+  transform: translate(-70%, 70%) scale(700);
+  color:#000;
+}
+
+button.auth-submit:active {
+  transform: translateY(1px);
+}
+
+
+/* Bottom text */
 .auth-alt-action {
   text-align: center;
   font-size: .85rem;
-  color: var(--color-text-secondary);
+  color:white;
 }
 
-.auth-alt-action a { font-weight: 600; }
-
-.small-note { font-size: .7rem; color: var(--color-text-secondary); line-height: 1.2; }
-
-/* Utility for spacing adjustments */
-.gap-sm { gap: var(--space-2); }
+/* Link → dark & bold */
+.auth-alt-action a {
+  font-weight: 700;
+  color:white;
+  text-decoration: underline;
+}
 
 /* Responsive */
 @media (max-width: 480px) {
-  .auth-card { padding: var(--space-5) var(--space-5) var(--space-4); }
-  .two-col { flex-direction: column; }
+  .auth-card {
+    padding: var(--space-5) var(--space-5) var(--space-4);
+  }
 }
 
-/* Smooth transitions for theme change */
-body, .auth-card, .field-group input { transition: background 200ms ease, color 200ms ease, border-color 200ms ease; }
+/* Smooth theme transition */
+body,
+.auth-card,
+.field-group input {
+  transition: background 200ms ease,
+              color 200ms ease,
+              border-color 200ms ease;
+}

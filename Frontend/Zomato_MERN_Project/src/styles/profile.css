@@ -17,7 +17,7 @@
 
 /* Header block */
 .profile-header {
-  background:white;
+  background-color:white;
   border: 1px solid hsl(210, 26%, 7%);
   box-shadow: var(--shadow-sm);
   padding: var(--space-6);
