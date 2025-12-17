@@ -1,11 +1,9 @@
 import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../../styles/Main.css"; // Assuming you pasted your CSS here
-// Import Icons
+import "../../styles/Main.css";
+
 import { IoSearchOutline, IoMenuOutline, IoCloseOutline, IoStar, IoCheckmarkOutline, IoCalendarOutline, IoPersonOutline, IoArrowForward, IoLogoFacebook, IoLogoTwitter, IoLogoInstagram, IoLogoPinterest, IoChevronUp } from 'react-icons/io5';
 
-// --- IMPORT YOUR IMAGES HERE ---
-// (Example imports - ensure filenames match your assets folder)
 import heroBg from '../../assests/images/hero-bg.jpg';
 import heroBannerBg from '../../assests/images/hero-banner-bg.png';
 import heroBanner from '../../assests/images/hero-banner.png';
@@ -18,7 +16,7 @@ import aboutBanner from '../../assests/images/about-banner.png';
 import saleShapeRed from '../../assests/images/sale-shape-red.png';
 import food1 from '../../assests/images/food-menu-1.png';
 import food2 from '../../assests/images/food-menu-2.png';
-import food3 from '../../assests/images/food-menu-30.png'; // Updated based on your filenames
+import food3 from '../../assests/images/food-menu-30.png'; 
 import food4 from '../../assests/images/food-menu-4.png';
 import food5 from '../../assests/images/food-menu-5.png';
 import food6 from '../../assests/images/food-menu-6.png';
@@ -39,7 +37,7 @@ import footerIllu from '../../assests/images/footer-illustration.png';
 import saleShape from '../../assests/images/sale-shape.png';
 import fork from '../../assests/images/fork.png'
 import chef from '../../assests/images/chef.png'
-// --- DYNAMIC DATA CONFIGURATION ---
+
 const promoData = [
   { title: "Maxican Pizza", text: "Food is any substance consumed to provide nutritional support.", img: promo1 },
   { title: "Soft Drinks", text: "Food is any substance consumed to provide nutritional support.", img: promo2 },
@@ -72,10 +70,10 @@ const blogData = [
 
 const navItems = [
     { label: 'Home', id: 'home' },
-    { label: 'About Us', id: 'about' },       // ID match: Section id="about"
-    { label: 'Shop', id: 'food-menu' },       // ID match: Section id="food-menu"
-    { label: 'Blog', id: 'blog' },            // ID match: Section id="blog"
-    { label: 'Contact Us', id: 'contact' }    // ID match: Footer id="contact" (Step 2 dekhein)
+    { label: 'About Us', id: 'about' },     
+    { label: 'Shop', id: 'food-menu' },     
+    { label: 'Blog', id: 'blog' },            
+    { label: 'Contact Us', id: 'contact' }    
   ];
 // --- COMPONENTS ---
 
@@ -479,7 +477,8 @@ const Blog = () => {
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-top" style={{ backgroundImage: `url(${footerIllu})` }}>
+      <div className="footer-top" id="contact"
+      style={{ backgroundImage: `url(${footerIllu})` }}>
         <div className="container">
           <div className="footer-brand">
             <a href="" className="Png2">SnakoGram<span className="span">.</span></a>

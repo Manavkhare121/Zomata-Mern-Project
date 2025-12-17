@@ -1135,9 +1135,9 @@ textarea.input-field {
   #MEDIA QUERIES
 \*-----------------------------------*/
 
-@media (min-width: 480px) {
+@media (min-width: 300px) {
   .header-btn-group .btn {
-    display: block;
+    display: flex;
     background-color: hsl(28, 100%, 58%); /* dark-orange */
   }
 }

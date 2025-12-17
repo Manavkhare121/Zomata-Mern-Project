@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../styles/auth-shared.css';
+import food from '../../assests/images/food_image.png'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ const UserLogin = () => {
 
   return (
     <div className="auth-page-wrapper">
+      <img src={food} alt="" />
       <div className="auth-card" role="region" aria-labelledby="user-login-title">
         <header>
           <h1 id="user-login-title" className="auth-title">Welcome back</h1>

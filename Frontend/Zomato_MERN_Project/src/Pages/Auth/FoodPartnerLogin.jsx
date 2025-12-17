@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/auth-shared.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import food from '../../assests/images/food_image.png'
 const FoodPartnerLogin = () => {
 
   const navigate = useNavigate();
@@ -26,6 +26,7 @@ const FoodPartnerLogin = () => {
 
   return (
     <div className="auth-page-wrapper">
+      <img src={food} alt="" />
       <div className="auth-card" role="region" aria-labelledby="partner-login-title">
         <header>
           <h1 id="partner-login-title" className="auth-title">Partner login</h1>

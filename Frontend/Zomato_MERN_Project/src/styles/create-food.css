@@ -9,10 +9,22 @@
   padding: var(--space-8) var(--space-4);
   background: #861719;
   box-sizing: border-box;
-  
+
+  position: relative;
+  overflow: hidden;
 }
 
-/* Card → white with dark border like profile-header */
+.create-food-page > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  opacity: 0.25; /* adjust intensity if needed */
+}
+
 .create-food-card {
   width: 100%;
   max-width: 720px;
@@ -25,6 +37,9 @@
   gap: var(--space-5);
   overflow: hidden;
   margin-top: 5rem;
+
+  position: relative;
+  z-index: 1;
 }
 
 /* Header */
@@ -38,12 +53,12 @@
   font-weight: 700;
   letter-spacing: .5px;
   margin-bottom: var(--space-1);
-  color:#fff;
+  color: #fff;
 }
 
 .create-food-subtitle {
   font-size: .85rem;
-  color:  hsl(210, 26%, 7%);
+  color: hsl(210, 26%, 7%);
 }
 
 .create-food-form {
@@ -201,7 +216,7 @@
 }
 
 .btn-primary:hover {
-  background:#861719;
+  background: #861719;
   color: #fff;
 }
 
@@ -233,21 +248,44 @@
   cursor: pointer;
   font-weight: 600;
 }
-.file-chip-actions{
+
+.file-chip-actions {
   display: flex;
   align-items: center;
-  gap:1.5rem;
+  gap: 1.5rem;
   margin-left: 15rem;
 }
+
 /* Responsive */
 @media (max-width: 768px) {
   .create-food-card {
     padding: var(--space-5);
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-60%);
   }
 }
 
 @media (max-width: 480px) {
   .create-food-card {
     padding: var(--space-4);
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-60%);
+  }
+
+}
+
+
+@media (max-width: 2000px) {
+  .create-food-card {
+    padding: var(--space-5);
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-60%);
   }
 }
+

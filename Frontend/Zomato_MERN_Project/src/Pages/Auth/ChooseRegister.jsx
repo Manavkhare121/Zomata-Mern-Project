@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/auth-shared.css';
+import food from '../../assests/images/food_image.png'
 
 const ChooseRegister = () => {
   return (
     <div className="auth-page-wrapper">
+      <img src={food} alt="" />
       <div className="auth-card" role="region" aria-labelledby="choose-register-title">
         <header>
           <h1 id="choose-register-title" className="auth-title">Register</h1>
