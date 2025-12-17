@@ -95,25 +95,25 @@ const Header = () => {
   };
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      // Change 50 to window.innerHeight if you want it exactly after the full hero height
+      // But 50 is usually better for User Experience (Sticky Header)
+      if (window.scrollY > 50) { 
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <header className={`header ${active || isScrolled ? 'active' : ''}`} data-header>
+    <header className={`header ${active ? 'active' : ''} ${isScrolled ? 'scrolled' : ''}`} data-header>
       <div className="container">
         <h1>
-          <a className="Png">SnakoGram<span className="span">.</span></a>
+          <a className="Png">SnackoGram<span className="span">.</span></a>
         </h1>
 
        <nav className={`navbar ${active ? 'active' : ''}`} data-navbar>
@@ -303,7 +303,7 @@ const CTA = () => {
     <section className="section section-divider white cta" style={{ backgroundImage: `url(${heroBg})` }}>
       <div className="container">
         <div className="cta-content">
-          <h2 className="h2 section-title">The SnakoGram Have Excellent Of <span className="span">Quality Burgers!</span></h2>
+          <h2 className="h2 section-title">The SnackoGram Have Excellent Of <span className="span">Quality Burgers!</span></h2>
           <p className="section-text">The restaurants in Hangzhou also catered to many northern Chinese who had fled south...</p>
           <button className="btn btn-hover">Order Now</button>
         </div>
@@ -481,7 +481,7 @@ const Footer = () => {
       style={{ backgroundImage: `url(${footerIllu})` }}>
         <div className="container">
           <div className="footer-brand">
-            <a href="" className="Png2">SnakoGram<span className="span">.</span></a>
+            <a href="" className="Png2">SnackoGram<span className="span">.</span></a>
             <p className="footer-text">Financial experts support or help you to to find out which way you can raise your funds more.</p>
             <ul className="social-list">
               <li><a href="#" className="social-link"><IoLogoFacebook /></a></li>
@@ -494,7 +494,7 @@ const Footer = () => {
           <ul className="footer-list">
             <li><p className="footer-list-title">Contact Info</p></li>
             <li><p className="footer-list-item">+916210999222</p></li>
-            <li><p className="footer-list-item">inf@snakogramGmail24.com</p></li>
+            <li><p className="footer-list-item">inf@SnackoGramGmail24.com</p></li>
             <li><address className="footer-list-item">Indrapuri , Bhopal</address></li>
           </ul>
 

@@ -17,7 +17,11 @@ a {
   color: inherit;
 }
 
-a, img, svg, span, input, select, button, textarea, ion-icon { display: block; }
+/* RESPONSIVE FIX: Added max-width to prevent overflow */
+a, img, svg, span, input, select, button, textarea, ion-icon { 
+  display: block; 
+  max-width: 100%; 
+}
 
 img { height: auto; }
 
@@ -42,12 +46,10 @@ html {
 }
 
 body {
-  
   color: hsl(0, 0%, 47%); /* sonic-silver */
   font-size: 1.6rem;
   line-height: 1.6;
   overflow-x: hidden;
-  /* Removed height: 100% to fix scroll issue */
   width: 100%; 
   min-height: 100vh;
 }
@@ -79,7 +81,8 @@ body.active { overflow: hidden; }
   letter-spacing: -1px;
 }
 
-.h1, .h2 { font-size: 3.2rem; }
+/* RESPONSIVE FIX: Fluid typography for very small screens */
+.h1, .h2 { font-size: clamp(2.8rem, 5vw, 3.2rem); }
 .h2, .h3, .h4 { font-weight: 600; }
 .h3 { font-size: 2.2rem; }
 .h4 { font-size: 1.8rem; }
@@ -139,7 +142,6 @@ body.active { overflow: hidden; }
   background-position: bottom;
 }
 
-/* Note: You still need the dynamic image variable or hardcoded URL here */
 .section-divider.white::after { 
   background-image: var(--bg-shape-white); 
 }
@@ -220,8 +222,9 @@ body.active { overflow: hidden; }
   left: 0;
   width: 100%;
   padding-block: 20px;
-  border-block-end: 1px solid hsla(23, 61%, 86%, 0.2); /* champagne-pink_20 */
+  border-block-end: 1px solid hsla(23, 61%, 86%, 0.2);
   z-index: 4;
+  background: rgba(32, 29, 29, 0.15);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -263,7 +266,6 @@ body.active { overflow: hidden; }
   gap: 20px;
 }
 
-/* INITIAL SEARCH BTN COLOR (Before Scroll) */
 .search-btn {
   color: hsl(23, 61%, 86%); /* champagne-pink */
   font-size: 20px;
@@ -274,7 +276,6 @@ body.active { overflow: hidden; }
   gap: 4px;
 }
 
-/* INITIAL TOGGLE BTN COLOR (Before Scroll) */
 .line {
   width: 10px;
   height: 3px;
@@ -303,11 +304,14 @@ body.active { overflow: hidden; }
   overflow: hidden;
   visibility: hidden;
   transition: 0.25s ease;
+  z-index: 5; /* RESPONSIVE FIX: Ensure it sits on top of hero content */
 }
 
 .navbar.active {
-  height: 236px;
+  height: auto; /* RESPONSIVE FIX: Allow flexible height for mobile menu */
+  min-height: 236px;
   visibility: visible;
+  padding-bottom: 20px;
 }
 
 .navbar-list { margin-block: 10px; }
@@ -323,38 +327,6 @@ body.active { overflow: hidden; }
 }
 
 .navbar-link:is(:hover, :focus) { color: hsl(28, 100%, 58%); /* dark-orange */ }
-
-/* --- SCROLL STATE HARDCODED --- */
-.header.active,
-.header.scrolled {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #ffffff !important;
-  box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.2);
-  animation: slideIn 0.5s ease-out forwards;
-}
-
-@keyframes slideIn {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(0); }
-}
-
-/* Change Text/Icon Colors when Scrolled */
-.header.active .Png,
-.header.scrolled .Png {
-  color: hsl(210, 26%, 7%); /* rich-black-fogra-29 */
-}
-
-.header.active .search-btn,
-.header.scrolled .search-btn {
-  color: hsl(210, 26%, 7%);
-}
-
-.header.active .line,
-.header.scrolled .line {
-  background-color: hsl(210, 26%, 7%);
-}
 
 /*-----------------------------------*\
   #SEARCH BOX
@@ -395,7 +367,7 @@ body.active { overflow: hidden; }
   padding-inline-end: 70px;
 }
 
-.search-input::placeholder { color: hsl(0, 0%, 60%); /* spanish-gray */ }
+.search-input::placeholder { color: hsl(0, 0%, 60%);  }
 .search-input::-webkit-search-cancel-button { display: none; }
 
 .search-submit {
@@ -415,7 +387,7 @@ body.active { overflow: hidden; }
   inset: 0;
   z-index: -1;
   cursor: pointer;
-  color: white; /* Added for close icon visibility */
+  color: white; 
 }
 
 /*-----------------------------------*\
@@ -569,12 +541,9 @@ body.active { overflow: hidden; }
 
 .about .btn { margin-inline: auto; }
 
-/*-----------------------------------*\
-  #FOOD MENU
-\*-----------------------------------*/
 
 .food-menu {
-  background-color: hsl(38, 44%, 96%); /* isabelline */
+  background-color: hsl(38, 44%, 96%);
   text-align: center;
 }
 
@@ -1244,14 +1213,27 @@ textarea.input-field {
 
   .nav-toggle-btn { display: none; }
   .header .container { gap: 20px; }
-  .navbar, .navbar.active { all: unset; margin-inline-start: auto; }
+  
+  /* RESPONSIVE FIX: Reset desktop navigation */
+  .navbar, .navbar.active { 
+    all: unset; 
+    margin-inline-start: auto;
+    display: block; 
+  }
+  
   .navbar-list { margin-block: 0; display: flex; gap: 5px; }
   .nav-item:not(:last-child) { border-block-end: none; }
+  
+  /* DEFAULT DESKTOP LINK COLOR: White (for transparent header) */
   .navbar-link {
     font-size: 1.5rem;
-    color:#fff; /* rich-black-fogra-29 */
+    color: #ffffff; 
     letter-spacing: -0.5px;
   }
+
+  /* Hover state remains orange */
+  .navbar-link:is(:hover, :focus) { color: hsl(28, 100%, 58%); }
+
 
   .hero { min-height: 660px; display: grid; align-items: center; }
   .hero-subtitle { font-size: 3.2rem; }
@@ -1318,8 +1300,8 @@ textarea.input-field {
   background-color: chocolate;
   padding: 20px;
   border-radius: 10px;
-  width: 420px;
-  max-width: 95%;
+  width: 95%; /* RESPONSIVE FIX: Ensure it fits on small screens */
+  max-width: 420px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   animation: popup 0.25s ease-out;
 }
