@@ -8,9 +8,12 @@ import foodRoutes from "./Routes/food.routes.js"
 import foodpartnerroutes from "./Routes/food-partner.routes.js"
 const app = express();
 app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true
-}));
+    origin: [
+      "http://localhost:5173",             
+      "https://snacko-gram.vercel.app"     
+    ],
+    credentials: true,
+  }));
 app.use(cookieParser())
 app.use(express.json())
 app.get("/", (req, res) => {

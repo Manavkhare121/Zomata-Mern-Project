@@ -17,11 +17,7 @@ a {
   color: inherit;
 }
 
-/* RESPONSIVE FIX: Added max-width to prevent overflow */
-a, img, svg, span, input, select, button, textarea, ion-icon { 
-  display: block; 
-  max-width: 100%; 
-}
+a, img, svg, span, input, select, button, textarea, ion-icon { display: block; }
 
 img { height: auto; }
 
@@ -46,10 +42,12 @@ html {
 }
 
 body {
+  
   color: hsl(0, 0%, 47%); /* sonic-silver */
   font-size: 1.6rem;
   line-height: 1.6;
   overflow-x: hidden;
+  /* Removed height: 100% to fix scroll issue */
   width: 100%; 
   min-height: 100vh;
 }
@@ -81,8 +79,7 @@ body.active { overflow: hidden; }
   letter-spacing: -1px;
 }
 
-/* RESPONSIVE FIX: Fluid typography for very small screens */
-.h1, .h2 { font-size: clamp(2.8rem, 5vw, 3.2rem); }
+.h1, .h2 { font-size: 3.2rem; }
 .h2, .h3, .h4 { font-weight: 600; }
 .h3 { font-size: 2.2rem; }
 .h4 { font-size: 1.8rem; }
@@ -142,6 +139,7 @@ body.active { overflow: hidden; }
   background-position: bottom;
 }
 
+/* Note: You still need the dynamic image variable or hardcoded URL here */
 .section-divider.white::after { 
   background-image: var(--bg-shape-white); 
 }
@@ -215,7 +213,6 @@ body.active { overflow: hidden; }
 \*-----------------------------------*/
 
 .header-btn-group .btn { display: none; }
-
 .header {
   position: absolute;
   top: 0;
@@ -266,6 +263,7 @@ body.active { overflow: hidden; }
   gap: 20px;
 }
 
+/* INITIAL SEARCH BTN COLOR (Before Scroll) */
 .search-btn {
   color: hsl(23, 61%, 86%); /* champagne-pink */
   font-size: 20px;
@@ -276,6 +274,7 @@ body.active { overflow: hidden; }
   gap: 4px;
 }
 
+/* INITIAL TOGGLE BTN COLOR (Before Scroll) */
 .line {
   width: 10px;
   height: 3px;
@@ -291,6 +290,9 @@ body.active { overflow: hidden; }
 .nav-toggle-btn.active .line.middle { transform: rotate(-45deg); }
 .nav-toggle-btn.active .line.bottom { transform: translate(-1px, -3px) rotate(45deg); }
 
+.navbar.isScrolled{
+  background-color: red;
+}
 .navbar {
   position: absolute;
   top: 100%;
@@ -304,14 +306,11 @@ body.active { overflow: hidden; }
   overflow: hidden;
   visibility: hidden;
   transition: 0.25s ease;
-  z-index: 5; /* RESPONSIVE FIX: Ensure it sits on top of hero content */
 }
 
 .navbar.active {
-  height: auto; /* RESPONSIVE FIX: Allow flexible height for mobile menu */
-  min-height: 236px;
+  height: 236px;
   visibility: visible;
-  padding-bottom: 20px;
 }
 
 .navbar-list { margin-block: 10px; }
@@ -327,6 +326,38 @@ body.active { overflow: hidden; }
 }
 
 .navbar-link:is(:hover, :focus) { color: hsl(28, 100%, 58%); /* dark-orange */ }
+
+.header.active,
+.header.isScrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.2);
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+
+@keyframes slideIn {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
+}
+
+/* Change Text/Icon Colors when Scrolled */
+.header.active .Png,
+.header.isScrolled .Png {
+  color: hsl(210, 26%, 7%); /* rich-black-fogra-29 */
+}
+
+.header.active .search-btn,
+.header.isScrolled .search-btn {
+  color: hsl(210, 26%, 7%);
+}
+
+.header.active .line,
+.header.isScrolled .line {
+  background-color: hsl(210, 26%, 7%);
+}
 
 /*-----------------------------------*\
   #SEARCH BOX
@@ -387,7 +418,7 @@ body.active { overflow: hidden; }
   inset: 0;
   z-index: -1;
   cursor: pointer;
-  color: white; 
+  color: white; /* Added for close icon visibility */
 }
 
 /*-----------------------------------*\
@@ -1213,27 +1244,14 @@ textarea.input-field {
 
   .nav-toggle-btn { display: none; }
   .header .container { gap: 20px; }
-  
-  /* RESPONSIVE FIX: Reset desktop navigation */
-  .navbar, .navbar.active { 
-    all: unset; 
-    margin-inline-start: auto;
-    display: block; 
-  }
-  
+  .navbar, .navbar.active { all: unset; margin-inline-start: auto; }
   .navbar-list { margin-block: 0; display: flex; gap: 5px; }
   .nav-item:not(:last-child) { border-block-end: none; }
-  
-  /* DEFAULT DESKTOP LINK COLOR: White (for transparent header) */
   .navbar-link {
     font-size: 1.5rem;
-    color: #ffffff; 
+    color:#fff; /* rich-black-fogra-29 */
     letter-spacing: -0.5px;
   }
-
-  /* Hover state remains orange */
-  .navbar-link:is(:hover, :focus) { color: hsl(28, 100%, 58%); }
-
 
   .hero { min-height: 660px; display: grid; align-items: center; }
   .hero-subtitle { font-size: 3.2rem; }
@@ -1300,8 +1318,8 @@ textarea.input-field {
   background-color: chocolate;
   padding: 20px;
   border-radius: 10px;
-  width: 95%; /* RESPONSIVE FIX: Ensure it fits on small screens */
-  max-width: 420px;
+  width: 420px;
+  max-width: 95%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   animation: popup 0.25s ease-out;
 }
@@ -1377,3 +1395,4 @@ textarea.input-field {
 .left-user p, .right-user p {
   color: white;
 }
+

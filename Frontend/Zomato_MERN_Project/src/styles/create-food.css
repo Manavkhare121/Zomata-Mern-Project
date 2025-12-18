@@ -257,6 +257,7 @@
 }
 
 /* Responsive */
+
 @media (max-width: 768px) {
   .create-food-card {
     padding: var(--space-5);
