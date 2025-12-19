@@ -307,7 +307,7 @@
 
   /* Video preview height control */
   .video-preview {
-    height:420px;
+    min-height:420px;
   }
 
   .video-preview-el {
