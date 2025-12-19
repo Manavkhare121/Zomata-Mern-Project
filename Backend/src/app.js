@@ -8,7 +8,7 @@ import foodRoutes from "./Routes/food.routes.js"
 import foodpartnerroutes from "./Routes/food-partner.routes.js"
 const app = express();
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin:["http://localhost:5173","https://snackogram-frontend.onrender.com"],
   credentials: true
 }));
 app.use(cookieParser())
