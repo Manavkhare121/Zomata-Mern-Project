@@ -256,37 +256,72 @@
   margin-left: 15rem;
 }
 
-/* Responsive */
-
-/* @media (max-width: 768px) {
-  .create-food-card {
-    padding: var(--space-5);
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-60%);
+@media (max-width: 610px) {
+  .create-food-page {
+    padding: var(--space-4) var(--space-3);
   }
-}
 
-@media (max-width: 480px) {
   .create-food-card {
+    margin-top: 2rem;
     padding: var(--space-4);
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-60%);
+    border-radius: var(--radius-sm);
   }
 
-}
+  .create-food-title {
+    font-size: 1.25rem;
+    text-align: center;
+  }
 
+  .create-food-subtitle {
+    font-size: 0.8rem;
+    text-align: center;
+  }
 
-@media (max-width: 2000px) {
-  .create-food-card {
-    padding: var(--space-5);
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-60%);
+  .file-dropzone {
+    padding: var(--space-4);
+  }
+
+  .file-dropzone-inner {
+    /* gap: var(--space-2); */
+  }
+
+  .file-hint {
+    font-size: 0.75rem;
+  }
+
+  /* Fix file chip overflow */
+  .file-chip-actions {
+    margin-left: 0;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .file-chip {
+    flex: 1;
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Video preview height control */
+  .video-preview {
+    height:420px;
+  }
+
+  .video-preview-el {
+    max-height: 420px;
+    object-fit: cover;
+  }
+
+  /* Stack buttons vertically */
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
   }
 }
- */

@@ -59,10 +59,22 @@ const saveFood = async (req, res) => {
 const getsavedfood = async (req, res) => {
   try {
     const userId = req.user._id;
-    const savedDocs = await SaveModel.find({ user: userId }).populate("food");
-    const savedFoods = savedDocs.map((doc) => doc.food);
-    res.status(200).json({ message: "Saved foods fetched successfully", saved: savedFoods });
+
+    const savedDocs = await SaveModel
+      .find({ user: userId })
+      .populate("food");
+
+    // ✅ remove null foods
+    const savedFoods = savedDocs
+      .map(doc => doc.food)
+      .filter(food => food !== null);
+
+    res.status(200).json({
+      message: "Saved foods fetched successfully",
+      saved: savedFoods,
+    });
   } catch (error) {
+    console.error("Error fetching saved foods:", error);
     res.status(500).json({ message: "Failed to fetch saved foods" });
   }
 };
