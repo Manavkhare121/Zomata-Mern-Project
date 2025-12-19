@@ -3,9 +3,14 @@ import '../../styles/auth-shared.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import food from '../../assests/images/food_image.png'
+
 const FoodPartnerLogin = () => {
 
   const navigate = useNavigate();
+
+  const BACKEND_URL =
+    import.meta.env.VITE_API_BASE ||
+    "https://snackogram-backend.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,15 +18,18 @@ const FoodPartnerLogin = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const response = await axios.post("http://localhost:8000/api/authentication/food-partner/login", {
-      email,
-      password
-    }, { withCredentials: true });
+    const response = await axios.post(
+      `${BACKEND_URL}/api/authentication/food-partner/login`,
+      {
+        email,
+        password
+      },
+      { withCredentials: true }
+    );
 
     console.log(response.data);
 
     navigate("/create-food"); 
-
   };
 
   return (
@@ -49,6 +57,6 @@ const FoodPartnerLogin = () => {
       </div>
     </div>
   );
-};
+};   
 
 export default FoodPartnerLogin;

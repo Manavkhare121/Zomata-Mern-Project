@@ -8,6 +8,10 @@ import food from '../../assests/images/food_image.png'
 const FoodPartnerRegister = () => {
   const navigate = useNavigate();
 
+  const BACKEND_URL =
+    import.meta.env.VITE_API_BASE ||
+    "https://snackogram-backend.onrender.com";
+
   // ✅ Make handleSubmit async
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +25,6 @@ const FoodPartnerRegister = () => {
     const password = formData.get("password")?.trim();
     const address = formData.get("address")?.trim();
 
-  
     if (!businessName || !contactName || !phone || !email || !password || !address) {
       alert("Please fill in all fields.");
       return;
@@ -29,7 +32,7 @@ const FoodPartnerRegister = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/authentication/food-partner/register",
+        `${BACKEND_URL}/api/authentication/food-partner/register`,
         {
           name: businessName,
           contactName,

@@ -2,15 +2,24 @@ import React, { useState, useEffect } from 'react';
 import '../../styles/profile.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import food from '../../assests/images/food_image.png'
+import food from '../../assests/images/food_image.png';
+
 const Profile = () => {
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
   const [videos, setVideos] = useState([]);
 
+  // ✅ Backend URL from env
+  const BACKEND_URL =
+    import.meta.env.VITE_API_BASE ||
+    "https://snackogram-backend.onrender.com";
+
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/food-partner/${id}`, { withCredentials: true })
+      .get(
+        `${BACKEND_URL}/api/food-partner/${id}`,
+        { withCredentials: true }
+      )
       .then((response) => {
         setProfile(response.data.foodPartner);
         setVideos(response.data.foodPartner.foodItems);
@@ -19,7 +28,7 @@ const Profile = () => {
 
   return (
     <main className="profile">
-        {/* <img src={food} alt="" /> */}
+      {/* <img src={food} alt="" /> */}
       <div className="profile-page">
         <section className="profile-header">
           <div className="profile-meta">
@@ -42,11 +51,15 @@ const Profile = () => {
           <div className="profile-stats" role="list">
             <div className="profile-stat" role="listitem">
               <span className="profile-stat-label">Total Meals</span>
-              <span className="profile-stat-value">{profile?.totalMeals}</span>
+              <span className="profile-stat-value">
+                {profile?.totalMeals}
+              </span>
             </div>
             <div className="profile-stat" role="listitem">
               <span className="profile-stat-label">Customer Served</span>
-              <span className="profile-stat-value">{profile?.customersServed}</span>
+              <span className="profile-stat-value">
+                {profile?.customersServed}
+              </span>
             </div>
           </div>
         </section>

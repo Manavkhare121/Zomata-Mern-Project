@@ -258,7 +258,7 @@
 
 /* Responsive */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .create-food-card {
     padding: var(--space-5);
     position: absolute;
@@ -289,4 +289,4 @@
     transform: translate(-50%,-60%);
   }
 }
-
+ */

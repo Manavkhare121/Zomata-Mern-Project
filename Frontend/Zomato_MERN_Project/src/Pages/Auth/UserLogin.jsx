@@ -8,21 +8,28 @@ const UserLogin = () => {
 
   const navigate = useNavigate();
 
+  const BACKEND_URL =
+    import.meta.env.VITE_API_BASE ||
+    "https://snackogram-backend.onrender.com";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const response = await axios.post("http://localhost:8000/api/auth/user/login", {
-      email,
-      password
-    }, { withCredentials: true });
+    const response = await axios.post(
+      `${BACKEND_URL}/api/auth/user/login`,
+      {
+        email,
+        password
+      },
+      { withCredentials: true }
+    );
 
     console.log(response.data);
 
     navigate("/home"); // Redirect to home after login
-
   };
 
   return (
