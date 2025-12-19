@@ -2,46 +2,50 @@ import { foodPartnerModel } from "../models/foodpartner.model.js";
 import {usermodel} from "../models/user.model.js"
 import jwt from "jsonwebtoken";
 
-const authFoodPartnerMiddleware=async (req,res,next)=>{
-      const token = req.cookies?.token || req.headers["authorization"]?.split(" ")[1];
+const authFoodPartnerMiddleware = async (req, res, next) => {
+  const token =
+    req.cookies?.token || req.headers.authorization?.split(" ")[1];
 
-    if(!token){
-        return res.status(400).json({
-            message:"Please login First"
-        })
+  if (!token) {
+    return res.status(401).json({ message: "Please login first" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const foodPartner = await foodPartnerModel.findById(decoded.id);
+    if (!foodPartner) {
+      return res.status(401).json({ message: "Food partner not found" });
     }
 
-    try{
-        const decoded=jwt.verify(token,process.env.JWT_SECRET)
-        const foodPartner=await foodPartnerModel.findById(decoded.id)
-        req.foodPartner=foodPartner
-        next()
-    }catch(err){
-        return res.status(401).json({
-            message:"Invalid Token"
-        })
-    }
-} 
+    req.foodPartner = foodPartner;
+    next();
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+};
 
 
-const authUserMiddleware=async (req,res,next)=>{
-    const token = req.cookies?.token || req.headers["authorization"]?.split(" ")[1];
-     if(!token){
-        return res.status(400).json({
-            message:"Please login First"
-        })
-    }
 
-    try{
-        const decoded=jwt.verify(token,process.env.JWT_SECRET)
-        const user=await usermodel.findById(decoded.id)
-        req.user=user
-        next()
-    }catch(err){
-        return res.status(401).json({
-            message:"Invalid Token"
-        })
+const authUserMiddleware = async (req, res, next) => {
+  const token = req.cookies?.token || req.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "Please login first" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await usermodel.findById(decoded.id);
+    if (!user) {
+      return res.status(401).json({ message: "User not found" });
     }
-}
+    req.user = user;
+    next();
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+};
+
 
 export {authFoodPartnerMiddleware,authUserMiddleware};

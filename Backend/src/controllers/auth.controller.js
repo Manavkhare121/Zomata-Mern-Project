@@ -33,7 +33,11 @@ const registeruser = async (req, res) => {
     { expiresIn: "7d" }
   );
 
-  res.cookie("token", token);
+  res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+});
   res.status(201).json({
     message: "User registered successfully",
     user: {
@@ -68,7 +72,11 @@ const loginuser = async (req, res) => {
     process.env.JWT_SECRET
   );
 
-  res.cookie("token",token);
+  res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+});
   res.status(200).json({
     message:"User Logged in successfully",
     user:{
@@ -80,7 +88,11 @@ const loginuser = async (req, res) => {
 };
 
 const logoutuser =async (req,res)=>{
-    res.clearCookie("token")
+    res.clearCookie("token", {
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+});
     res.status(200).json({message:"User Logged out successfully"})
 }
 
