@@ -457,3 +457,239 @@
     text-align: center;
   }
 }
+
+
+@media (max-width: 563px) {
+
+   .create-food-page {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .create-food-card {
+    margin-top: 1.5rem;
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+  }
+
+  .create-food-title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .create-food-subtitle {
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .file-dropzone {
+    padding: var(--space-4);
+  }
+
+  .file-hint {
+    font-size: 0.75rem;
+  }
+
+  .file-chip-actions {
+    /* margin-left: 0; */
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .file-chip {
+    flex: 1 1 auto;
+    font-size: 0.7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* 🎥 Video preview optimized for mobile */
+  .video-preview {
+    max-height: 420px;
+    min-height: 320px;
+  }
+
+  .video-preview-el {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 526px) {
+  /* Page spacing */
+  .create-food-page {
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .create-food-card {
+    margin-top: 1rem;
+    padding: var(--space-3);
+  }
+
+  /* Header text */
+  .create-food-title {
+    font-size: 1.15rem;
+  }
+
+  .create-food-subtitle {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+
+  /* Upload box */
+  .file-dropzone {
+    padding: var(--space-3);
+  }
+
+  .file-dropzone-text {
+    font-size: 0.8rem;
+  }
+
+  .file-hint {
+    font-size: 0.7rem;
+  }
+
+  /* File chip — keep single line */
+  .file-chip {
+    font-size: 0.65rem;
+    gap: 6px;
+  }
+
+  .file-chip-name {
+    max-width: 60%;
+  }
+
+  .file-chip-actions {
+    gap: 0.35rem;
+  }
+
+  .file-chip-actions button {
+    font-size: 0.65rem;
+    padding: 2px 3px;
+  }
+
+  /* Video preview — key fix */
+  .video-preview {
+    min-height: 280px;
+    max-height: 360px;
+  }
+
+  .video-preview-el {
+    max-height: 360px;
+    object-fit: cover;
+  }
+
+  /* Inputs */
+  .field-group input,
+  .field-group textarea {
+    font-size: 0.8rem;
+    padding: 9px 10px;
+  }
+
+  /* CTA */
+  .btn-primary {
+    font-size: 0.85rem;
+    padding: 12px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  /* Page & card spacing */
+  .create-food-page {
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .create-food-card {
+    margin-top: 0.75rem;
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Header */
+  .create-food-title {
+    font-size: 1.05rem;
+  }
+
+  .create-food-subtitle {
+    font-size: 0.72rem;
+    line-height: 1.25;
+  }
+
+  /* Upload area */
+  .file-dropzone {
+    padding: var(--space-3);
+  }
+
+  .file-dropzone-text {
+    font-size: 0.75rem;
+  }
+
+  .file-hint {
+    font-size: 0.68rem;
+  }
+
+  /* File chip — keep single line */
+  .file-chip {
+    font-size: 0.6rem;
+    gap: 5px;
+  }
+
+  .file-chip-name {
+    max-width: 65%;
+  }
+
+  /* Hide file size to save space */
+  .file-chip-size {
+    display: none;
+  }
+
+  .file-chip-actions {
+    gap: 0.25rem;
+  }
+
+  .file-chip-actions button {
+    font-size: 0.6rem;
+    padding: 2px;
+  }
+
+  /* Video preview — optimized height */
+  .video-preview {
+    min-height: 260px;
+    max-height: 330px;
+  }
+
+  .video-preview-el {
+    max-height: 330px;
+    object-fit: cover;
+  }
+
+  /* Inputs */
+  .field-group input,
+  .field-group textarea {
+    font-size: 0.78rem;
+    padding: 8px 10px;
+  }
+
+  /* CTA */
+  .btn-primary {
+    font-size: 0.82rem;
+    padding: 11px;
+  }
+}
+
+
