@@ -281,9 +281,6 @@
     padding: var(--space-4);
   }
 
-  .file-dropzone-inner {
-    /* gap: var(--space-2); */
-  }
 
   .file-hint {
     font-size: 0.75rem;
@@ -291,10 +288,10 @@
 
   /* Fix file chip overflow */
   .file-chip-actions {
-    margin-left: 0;
-    justify-content: space-between;
+    margin-left: 28rem;
+    /* justify-content: space-between; */
     width: 100%;
-    gap: 1rem;
+    gap: 2rem;
   }
 
   .file-chip {
