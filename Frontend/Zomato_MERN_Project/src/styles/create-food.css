@@ -322,3 +322,138 @@
     text-align: center;
   }
 }
+@media (max-width: 593px) {
+  .create-food-page {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .create-food-card {
+    margin-top: 2rem;
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+  }
+
+  .create-food-title {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .create-food-subtitle {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .file-dropzone {
+    padding: var(--space-4);
+  }
+
+
+  .file-hint {
+    font-size: 0.75rem;
+  }
+
+  /* Fix file chip overflow */
+  .file-chip-actions {
+    margin-left: 28rem;
+    /* justify-content: space-between; */
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .file-chip {
+    flex: 1;
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Video preview height control */
+  .video-preview {
+    min-height:420px;
+  }
+
+  .video-preview-el {
+    max-height: 420px;
+    object-fit: cover;
+  }
+
+  /* Stack buttons vertically */
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 584px) {
+  .create-food-page {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .create-food-card {
+    margin-top: 1.5rem;
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+  }
+
+  .create-food-title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .create-food-subtitle {
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .file-dropzone {
+    padding: var(--space-4);
+  }
+
+  .file-hint {
+    font-size: 0.75rem;
+  }
+
+  .file-chip-actions {
+    /* margin-left: 0; */
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .file-chip {
+    flex: 1 1 auto;
+    font-size: 0.7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* 🎥 Video preview optimized for mobile */
+  .video-preview {
+    max-height: 420px;
+    min-height: 320px;
+  }
+
+  .video-preview-el {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}
