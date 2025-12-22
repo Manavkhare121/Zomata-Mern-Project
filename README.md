@@ -68,4 +68,3 @@ Follow these steps to set up the project locally.
 * NPM or Yarn
 * MongoDB installed locally or a MongoDB Atlas URI
 * An [ImageKit.io](https://imagekit.io/) Account
-* 
